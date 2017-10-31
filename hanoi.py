@@ -1,21 +1,4 @@
-# class Disc:
-#     def __init__(self, size):
-#         self.size = size
-#         self.index = 0
-#
-#     def move(self):
-#         if h[self.index][-1] == self:
-#             h[self.index].pop()
-#             self.index = (self.index + 1) % 3
-#             h[self.index].append(self)
-#
-# class Pole(list):
-#     def __init__(self, members = []):
-#         for member in members:
-#             self.append(member)
-#
-#     def display(self):
-#         print map(lambda x: x.size, self)
+from indexer import Indexer
 
 class Hanoi(list):
     def __init__(self, count):
@@ -40,3 +23,11 @@ class Hanoi(list):
             self[(pole + 2) % 3].append(mover)
         else:
             self[(pole + 1) % 3].append(mover)
+
+if __name__ == '__main__':
+    h = Hanoi(3)
+    for index in Indexer(4):
+        print h
+        h.move(index)
+
+    print h
