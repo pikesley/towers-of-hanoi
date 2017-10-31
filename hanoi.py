@@ -30,9 +30,13 @@ class Hanoi(list):
         pole = 0
         for i in range(self.count):
             try:
-                self[i].index(disc)
+                self[i].index(disc) == self.count
                 pole = i
             except ValueError:
                 pass
 
-        self[(pole + 1) % 3].append(self[pole].pop())
+        mover = self[pole].pop()
+        if len(self[(pole + 1) % 3]) and self[(pole + 1) % 3][-1] < mover:
+            self[(pole + 2) % 3].append(mover)
+        else:
+            self[(pole + 1) % 3].append(mover)
