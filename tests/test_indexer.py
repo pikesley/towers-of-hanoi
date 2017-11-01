@@ -1,7 +1,8 @@
 from indexer import Indexer
 
+
 class TestCounter:
-    def test_indexes_for_4(self):
+    def test_indexes_for_2(self):
         assert Indexer(2) == [0, 1, 0]
 
     def test_indexes_for_3(self):

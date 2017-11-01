@@ -2,6 +2,7 @@ import copy
 import sys
 from indexer import Indexer
 
+
 class Hanoi:
     def __init__(self, count):
         self.indexer = Indexer(count)
@@ -31,7 +32,8 @@ class Hanoi:
                 pass
 
         mover = self.poles[pole].pop()
-        if len(self.poles[(pole + 1) % 3]) and self.poles[(pole + 1) % 3][-1] < mover:
+        if len(self.poles[(pole + 1) % 3]) \
+                and self.poles[(pole + 1) % 3][-1] < mover:
             self.poles[(pole + 2) % 3].append(mover)
         else:
             self.poles[(pole + 1) % 3].append(mover)
@@ -47,6 +49,7 @@ class Hanoi:
             s += "------\n"
 
         return s
+
 
 if __name__ == '__main__':
     count = 2

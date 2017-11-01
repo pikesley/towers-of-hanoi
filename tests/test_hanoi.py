@@ -1,5 +1,6 @@
 from hanoi import Hanoi
 
+
 class TestHanoi:
     def test_structure(self):
         h = Hanoi(3)
@@ -28,4 +29,4 @@ class TestHanoi:
         h.run()
         for state in h.states:
             for pole in state:
-                assert sorted(pole, reverse = True) == pole
+                assert sorted(pole, reverse=True) == pole
