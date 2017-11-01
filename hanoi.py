@@ -1,4 +1,5 @@
 import copy
+import sys
 from indexer import Indexer
 
 class Hanoi:
@@ -48,6 +49,13 @@ class Hanoi:
         return s
 
 if __name__ == '__main__':
-    h = Hanoi(2)
+    count = 2
+
+    try:
+        count = int(sys.argv[1])
+    except IndexError:
+        pass
+    
+    h = Hanoi(count)
     h.run()
     print h
