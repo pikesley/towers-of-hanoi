@@ -8,3 +8,6 @@ lint:
 
 clean:
 	find . -name "*pyc" -delete
+
+run:
+	python hanoi.py $(count)

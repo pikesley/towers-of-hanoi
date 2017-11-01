@@ -48,16 +48,21 @@ class Hanoi:
                 s += "\n"
             s += "------\n"
 
+        s += "Total of %d moves to solve for %d discs" % \
+            (len(self.states) - 1, self.count)
+
         return s
 
 
 if __name__ == '__main__':
-    count = 2
-
     try:
         count = int(sys.argv[1])
     except IndexError:
-        pass
+        count = 3
+    except ValueError:
+        count = 3
+    if count == 0:
+        count = 3
 
     h = Hanoi(count)
     h.run()
