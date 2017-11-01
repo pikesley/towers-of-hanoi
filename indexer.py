@@ -1,6 +1,6 @@
 class Indexer(list):
     def __init__(self, limit):
-        self.limit = limit
+        self.limit = int('1' * limit, 2)
         self.numbers()
         self.indeces()
 
