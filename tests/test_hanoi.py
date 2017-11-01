@@ -22,3 +22,10 @@ class TestHanoi:
         h.move(0)
         h.move(1)
         assert h.states[2] == [[2], [0], [1]]
+
+    def test_kosher_game(self):
+        h = Hanoi(6)
+        h.run()
+        for state in h.states:
+            for pole in state:
+                assert sorted(pole, reverse = True) == pole

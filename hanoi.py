@@ -4,7 +4,7 @@ from indexer import Indexer
 
 class Hanoi:
     def __init__(self, count):
-        self.indexer = Indexer(3)
+        self.indexer = Indexer(count)
         self.count = count
         self.poles = []
         for i in range(3):
@@ -23,7 +23,7 @@ class Hanoi:
 
     def move(self, disc):
         pole = 0
-        for i in range(self.count):
+        for i in range(3):
             try:
                 self.poles[i].index(disc) == self.count
                 pole = i
@@ -55,7 +55,7 @@ if __name__ == '__main__':
         count = int(sys.argv[1])
     except IndexError:
         pass
-    
+
     h = Hanoi(count)
     h.run()
     print h
