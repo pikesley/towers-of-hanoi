@@ -73,3 +73,13 @@ def test_seventh_state():
         "count": "111",
         "flip": 0
     }
+
+
+def test_kosher_game():
+    """Ensure that discs in a stack are always in ascending size"""
+    towers = Towers(12)
+
+    while not towers.solved():
+        towers.move()
+        for stack in towers.stacks:
+            assert sorted(stack, reverse=True) == stack
