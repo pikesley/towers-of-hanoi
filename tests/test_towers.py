@@ -3,7 +3,7 @@ from towers import Towers
 
 towers = Towers(3)
 
-def test_start_state():
+def test_zero_state():
     assert towers.inspect() == {
         "stacks": [
             [2, 1, 0],
@@ -14,10 +14,10 @@ def test_start_state():
         "flip": None
     }
 
-def test_first_move():
+def test_first_state():
     towers.move()
     assert towers.inspect()["count"] == "001"
-    #assert towers.inspect()["flip"] == 0
+    assert towers.inspect()["flip"] == 0
 
     # assert towers.inspect() == {
     #     "stacks": [
@@ -28,3 +28,8 @@ def test_first_move():
     #     "count": "001",
     #     "flip": 0
     # }
+
+def test_second_state():
+    towers.move()
+    assert towers.inspect()["count"] == "010"
+    assert towers.inspect()["flip"] == 1

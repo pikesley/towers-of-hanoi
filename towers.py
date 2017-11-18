@@ -3,15 +3,21 @@ class Towers:
         self.discs = discs
         self.stacks = [range(self.discs - 1, -1, -1), [], []]
         self.count = 0
-        self.binary = self.binarise(self.count)
+        self.binarise()
         self.flip = None
 
-    def binarise(self, integer):
-        return format(integer, '0%sb' % self.discs)
+    def binarise(self):
+        self.binary = format(self.count, '0%sb' % self.discs)
+        return self.binary
 
     def move(self):
         self.count = self.count + 1
-        self.binary = self.binarise(self.count)
+        self.diff()
+
+    def diff(self):
+        for i in range(self.discs):
+            if self.binary[::-1][i] == '0' and self.binarise()[::-1][i] == '1':
+                self.flip = i
 
     def inspect(self):
         return {
