@@ -34,7 +34,7 @@ def phat_stacks(towers):
         show()
 
 def digit(value, offset):
-    for i in range(4, 6):
+    for i in range(3, 6):
         if int(value) == 0:
             set_pixel(offset, i, 1)
         set_pixel(offset + 1, i, 1)
