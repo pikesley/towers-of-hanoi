@@ -23,7 +23,7 @@ make run discs=n
 
 to actually solve
 
-Note that the output is kind of sideways - that's because console output is not the real purpose of this - if you're running this Raspberry Pi with a [Micro Dot pHAT](https://shop.pimoroni.com/products/microdot-phat) attached, then try
+Note that the output is kind of sideways, and that's because console output is not the real purpose of this - if you're running this on a Raspberry Pi with a [Micro Dot pHAT](https://shop.pimoroni.com/products/microdot-phat) attached, then try
 
 ```
 make phat
