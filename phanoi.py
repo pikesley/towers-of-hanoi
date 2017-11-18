@@ -9,10 +9,10 @@ INTERVAL = 0.5
 
 def phat_stacks(towers):
     clear()
-   
-    bit_offset = 0 
+
+    bit_offset = 0
     for bit in list(towers.binary):
-        write_string(bit, offset_x = 24 + bit_offset)
+        write_string(bit, offset_x=24 + bit_offset)
         bit_offset = bit_offset + 8
 
     offset = 0
