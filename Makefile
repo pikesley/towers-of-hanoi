@@ -11,7 +11,7 @@ clean:
 	find . -name __pycache__ -exec rm -r {} \;
 
 run:
-	python main.py $(discs)
+	python towers.py $(discs)
 
 phat:
-	python phanoi.py 
+	python phanoi.py

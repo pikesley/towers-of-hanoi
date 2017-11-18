@@ -92,3 +92,26 @@ class Towers:
 
     def __str__(self):
         return self.pretty_stacks()
+
+
+if __name__ == "__main__":
+    import sys
+    try:
+        discs = int(sys.argv[1])
+    except IndexError:
+        discs = 3
+    except ValueError:
+        discs = 3
+    if discs == 0:
+        discs = 3
+
+    towers = Towers(discs)
+    print towers
+
+    moves = 0
+    while not towers.solved():
+        towers.move()
+        print towers
+        moves = moves + 1
+
+    print "%d moves to solve for %d discs" % (moves, discs)
