@@ -13,12 +13,12 @@ if __name__ == "__main__":
         discs = 3
 
     towers = Towers(discs)
-    print towers.pretty_stacks()
+    print towers
 
     moves = 0
     while not towers.solved():
         towers.move()
-        print towers.pretty_stacks()
+        print towers
         moves = moves + 1
 
     print "%d moves to solve for %d discs" % (moves, discs)

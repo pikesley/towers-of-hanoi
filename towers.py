@@ -53,3 +53,6 @@ class Towers:
         s += "------"
 
         return s
+
+    def __str__(self):
+        return self.pretty_stacks()
