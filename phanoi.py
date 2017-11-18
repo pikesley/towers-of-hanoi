@@ -6,6 +6,7 @@ from towers import Towers
 
 INTERVAL = 0.1
 
+
 def phat_stacks(towers):
     clear()
     offset = 0
@@ -17,6 +18,7 @@ def phat_stacks(towers):
             count = count + 1
         offset = offset + 8
         show()
+
 
 if __name__ == '__main__':
     try:
@@ -42,4 +44,3 @@ if __name__ == '__main__':
             moves = moves + 1
 
         time.sleep(INTERVAL * 3)
-   
