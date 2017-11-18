@@ -54,5 +54,38 @@ class Towers:
 
         return s
 
+    def phat_matrix(self):
+        matrix = []
+        for i in range(7):
+            matrix.append([0] * 45)
+
+        bit_offset = 0
+        toggle = 5
+        for bit in list(self.binary):
+            self.little_digit(bit, matrix, 27 + bit_offset)
+            bit_offset = bit_offset + toggle
+            if toggle == 3:
+                toggle = 5
+            else:
+                toggle = 3
+
+        offset = 0
+        for stack in self.stacks:
+            count = 0
+            for disc in stack:
+                shim = int((5 - (disc + 1)) / 2)
+                for i in range(disc + 1):
+                    matrix[6 - count][i + offset + shim] = 1
+                count = count + 1
+            offset = offset + 8
+        print matrix
+        return matrix
+
+    def little_digit(self, value, matrix, offset):
+        for i in range(3, 6):
+            if int(value) == 0:
+                matrix[i][offset] = 1
+            matrix[i][offset + 1] = 1
+
     def __str__(self):
         return self.pretty_stacks()
