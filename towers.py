@@ -78,7 +78,6 @@ class Towers:
                     matrix[6 - count][i + offset + shim] = 1
                 count = count + 1
             offset = offset + 8
-        print matrix
         return matrix
 
     def little_digit(self, value, matrix, offset):

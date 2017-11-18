@@ -38,6 +38,14 @@ def digit(value, offset):
             set_pixel(offset, i, 1)
         set_pixel(offset + 1, i, 1)
 
+def display(towers):
+    clear()
+    for i in range(7):
+        for j in range(45):
+            set_pixel(j, i, towers.phat_matrix()[i][j])
+
+    show()
+        
 
 if __name__ == '__main__':
     try:
@@ -51,14 +59,14 @@ if __name__ == '__main__':
 
     while True:
         towers = Towers(discs)
-        phat_stacks(towers)
+        display(towers)
         print towers.binary
         time.sleep(INTERVAL * 3)
 
         moves = 0
         while not towers.solved():
             towers.move()
-            phat_stacks(towers)
+            display(towers)
             print towers.binary
             moves = moves + 1
             time.sleep(INTERVAL)
