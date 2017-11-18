@@ -3,33 +3,73 @@ from towers import Towers
 
 towers = Towers(3)
 
+
 def test_zero_state():
     assert towers.inspect() == {
-        "stacks": [
-            [2, 1, 0],
-            [],
-            []
-        ],
+        "stacks": [[2, 1, 0], [], []],
         "count": "000",
         "flip": None
     }
 
+
 def test_first_state():
     towers.move()
-    assert towers.inspect()["count"] == "001"
-    assert towers.inspect()["flip"] == 0
+    assert towers.inspect() == {
+        "stacks": [[2, 1], [0], []],
+        "count": "001",
+        "flip": 0
+    }
 
-    # assert towers.inspect() == {
-    #     "stacks": [
-    #         [2, 1],
-    #         [0],
-    #         []
-    #     ],
-    #     "count": "001",
-    #     "flip": 0
-    # }
 
 def test_second_state():
     towers.move()
-    assert towers.inspect()["count"] == "010"
-    assert towers.inspect()["flip"] == 1
+    assert towers.inspect() == {
+        "stacks": [[2], [0], [1]],
+        "count": "010",
+        "flip": 1
+    }
+
+
+def test_third_state():
+    towers.move()
+    assert towers.inspect() == {
+        "stacks": [[2], [], [1, 0]],
+        "count": "011",
+        "flip": 0
+    }
+
+
+def test_fourth_state():
+    towers.move()
+    assert towers.inspect() == {
+        "stacks": [[], [2], [1, 0]],
+        "count": "100",
+        "flip": 2
+    }
+
+
+def test_fifth_state():
+    towers.move()
+    assert towers.inspect() == {
+        "stacks": [[0], [2], [1]],
+        "count": "101",
+        "flip": 0
+    }
+
+
+def test_sixth_state():
+    towers.move()
+    assert towers.inspect() == {
+        "stacks": [[0], [2, 1], []],
+        "count": "110",
+        "flip": 1
+    }
+
+
+def test_seventh_state():
+    towers.move()
+    assert towers.inspect() == {
+        "stacks": [[], [2, 1, 0], []],
+        "count": "111",
+        "flip": 0
+    }

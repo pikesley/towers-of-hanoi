@@ -11,4 +11,4 @@ clean:
 	find . -name __pycache__ -exec rm -r {} \;
 
 run:
-	python hanoi.py $(count)
+	python main.py $(count)
