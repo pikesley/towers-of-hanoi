@@ -1,7 +1,11 @@
 [![Build Status](http://img.shields.io/travis/pikesley/towers-of-hanoi.svg?style=flat-square)](https://travis-ci.org/pikesley/towers-of-hanoi)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://pikesley.mit-license.org)
 
-# Surely there are easier ways to do this?
+# Towers of Hanoi
+
+_Counting in binary to solve the Towers of Hanoi_
+
+## Surely there are easier ways to do this?
 
 Yes, there are. This is very much a Solved Problem. However, I was inspired to implement this solution after watching [3 Blue 1 Brown](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw)'s [fascinating video](https://www.youtube.com/watch?v=2SUvWfNJSsM), in which Grant relates the Towers Of Hanoi to the Rhythm Of Counting In Binary:
 
