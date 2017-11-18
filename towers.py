@@ -14,21 +14,25 @@ class Towers:
         self.count = self.count + 1
         self.diff()
 
-        stack = 0
+        self.source = self.locate_mover()
+        self.mover = self.stacks[self.source].pop()
+
+        self.stacks[self.locate_sink()].append(self.mover)
+
+    def locate_mover(self):
         for i in range(3):
             try:
                 self.stacks[i].index(self.flip) == self.count
-                stack = i
+                return i
             except ValueError:
                 pass
 
-        mover = self.stacks[stack].pop()
-
-        if len(self.stacks[(stack + 1) % 3]) \
-                and self.stacks[(stack + 1) % 3][-1] < mover:
-            self.stacks[(stack + 2) % 3].append(mover)
+    def locate_sink(self):
+        if len(self.stacks[(self.source + 1) % 3]) \
+                and self.stacks[(self.source + 1) % 3][-1] < self.mover:
+            return (self.source + 2) % 3
         else:
-            self.stacks[(stack + 1) % 3].append(mover)
+            return (self.source + 1) % 3
 
     def diff(self):
         for i in range(self.discs):

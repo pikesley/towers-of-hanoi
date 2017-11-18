@@ -1,4 +1,3 @@
-import sys
 import time
 
 from microdotphat import clear, set_pixel, show
@@ -6,6 +5,7 @@ from towers import Towers
 
 INTERVAL = 0.3
 DISCS = 5
+
 
 def display(towers):
     clear()
