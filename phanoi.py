@@ -13,8 +13,9 @@ def phat_stacks(towers):
     for stack in towers.stacks:
         count = 0
         for disc in stack:
+            shim = int((5 - (disc + 1)) / 2)
             for i in range(disc + 1):
-                set_pixel(i + offset, 6 - count, 1)
+                set_pixel(i + offset + shim, 6 - count, 1)
             count = count + 1
         offset = offset + 8
         show()
