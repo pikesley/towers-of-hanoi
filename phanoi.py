@@ -14,7 +14,7 @@ def display(towers):
             set_pixel(j, i, towers.phat_matrix()[i][j])
 
     show()
-        
+
 
 if __name__ == '__main__':
     while True:
@@ -23,12 +23,10 @@ if __name__ == '__main__':
         print towers.binary
         time.sleep(INTERVAL * 3)
 
-        moves = 0
         while not towers.solved():
             towers.move()
             display(towers)
             print towers.binary
-            moves = moves + 1
             time.sleep(INTERVAL)
 
         time.sleep(INTERVAL * 10)
