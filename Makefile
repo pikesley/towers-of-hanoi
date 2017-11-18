@@ -11,4 +11,7 @@ clean:
 	find . -name __pycache__ -exec rm -r {} \;
 
 run:
-	python main.py $(count)
+	python main.py $(discs)
+
+phat:
+	python phanoi.py 

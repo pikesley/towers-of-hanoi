@@ -18,9 +18,15 @@ make
 to run the tests, and
 
 ```
-make run count=n
+make run discs=n
 ```
 
 to actually solve
 
-Note that the output is kind of sideways - that's because console output is not the real purpose of this, I have plans involving a Raspberry Pi and a [Micro Dot pHAT](https://shop.pimoroni.com/products/microdot-phat) (that's also why I've done this in Python and not Ruby)
+Note that the output is kind of sideways - that's because console output is not the real purpose of this - if you're running this Raspberry Pi with a [Micro Dot pHAT](https://shop.pimoroni.com/products/microdot-phat) attached, then try
+
+```
+make phat
+```
+
+to watch this all play out on the pHAT
