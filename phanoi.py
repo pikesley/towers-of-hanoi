@@ -1,7 +1,7 @@
 import sys
 import time
 
-from microdotphat import clear, set_pixel, write_string, show
+from microdotphat import clear, set_pixel, show
 from towers import Towers
 
 INTERVAL = 0.3
@@ -13,14 +13,12 @@ def phat_stacks(towers):
     bit_offset = 0
     toggle = 5
     for bit in list(towers.binary):
-       # write_string(bit, offset_x=24 + bit_offset)
         digit(bit, 27 + bit_offset)
         bit_offset = bit_offset + toggle
         if toggle == 3:
             toggle = 5
         else:
             toggle = 3
-            
 
     offset = 0
     for stack in towers.stacks:
@@ -33,11 +31,13 @@ def phat_stacks(towers):
         offset = offset + 8
         show()
 
+
 def digit(value, offset):
     for i in range(3, 6):
         if int(value) == 0:
             set_pixel(offset, i, 1)
         set_pixel(offset + 1, i, 1)
+
 
 if __name__ == '__main__':
     try:
