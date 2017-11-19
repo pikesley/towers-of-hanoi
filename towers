@@ -9,7 +9,7 @@ require_relative 'lib/towers'
 INTERVAL = 0.3
 
 def hit_phat towers
-  url = 'http://192.168.1.115:5000/lights'
+  url = 'http://localhost:5000/lights'
   payload = {
     data: towers.matrix
   }
