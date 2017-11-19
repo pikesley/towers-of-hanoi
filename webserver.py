@@ -8,6 +8,7 @@ RASPI = os.uname()[1] == 'raspberrypi'
 if RASPI:
     from microdotphat import clear, set_pixel, show
 
+
 @app.route("/lights", methods=['PATCH'])
 def lights():
     data = json.loads(request.data)['data']
