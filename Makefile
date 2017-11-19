@@ -16,3 +16,11 @@ phat:
 	python webserver.py &
 	sleep 2
 	./towers phat
+
+fake-phat:
+	python dummywebserver.py &
+	sleep 2
+	./towers phat
+
+kill:
+	kill `ps ax | grep webser | tr -s ' ' ' ' | cut -d ' ' -f 1`
