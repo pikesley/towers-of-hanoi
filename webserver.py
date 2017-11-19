@@ -5,11 +5,6 @@ from microdotphat import clear, set_pixel, show
 app = Flask(__name__)
 
 
-@app.route("/")
-def hello():
-    return "Hello Foo!"
-
-
 @app.route("/lights", methods=['POST'])
 def lights():
     data = json.loads(request.data)['data']
@@ -31,4 +26,4 @@ def lights():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run()
