@@ -10,8 +10,8 @@ install:
 	bundle
 
 solve:
-	./towers console --discs $(discs)
-
+	./towers console --discs $(or $(discs),3)
+	
 phat:
 	python webserver.py &
 	sleep 2
