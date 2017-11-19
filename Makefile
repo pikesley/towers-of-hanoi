@@ -15,5 +15,5 @@ run:
 
 phat:
 	python webserver.py &
-	sleep 1
+	sleep 2
 	python phanoi.py
