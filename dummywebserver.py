@@ -4,7 +4,7 @@ import json
 app = Flask(__name__)
 
 
-@app.route("/lights", methods=['POST'])
+@app.route("/lights", methods=['PATCH'])
 def lights():
     data = json.loads(request.data)['data']
     s = ''

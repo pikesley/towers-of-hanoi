@@ -18,7 +18,7 @@ def hit_phat towers
     'Accept' => 'application/json'
   }
 
-  HTTParty.post(url, body: payload.to_json, headers: headers)
+  HTTParty.patch(url, body: payload.to_json, headers: headers)
 end
 
 def fakephat towers
