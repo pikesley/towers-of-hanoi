@@ -22,7 +22,7 @@ make
 to run the tests, and
 
 ```
-make run discs=n
+make solve discs=n
 ```
 
 to actually solve
