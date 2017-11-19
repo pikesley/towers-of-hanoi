@@ -14,4 +14,6 @@ run:
 	python towers.py $(discs)
 
 phat:
+	python webserver.py &
+	sleep 1
 	python phanoi.py

@@ -1,20 +1,18 @@
 import time
+import requests, json
 
 from microdotphat import clear, set_pixel, show
 from towers import Towers
 
-INTERVAL = 0.3
+INTERVAL = 0.3 
 DISCS = 5
 
 
 def display(towers):
-    clear()
-    for i in range(7):
-        for j in range(45):
-            set_pixel(j, i, towers.phat_matrix()[i][j])
-
-    show()
-
+    url = 'http://localhost:5000/lights'
+    payload = {"data": towers.phat_matrix()}
+    headers = {'content-type': 'application/json'}
+    requests.post(url, data=json.dumps(payload), headers=headers)
 
 if __name__ == '__main__':
     while True:
