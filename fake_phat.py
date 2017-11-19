@@ -24,15 +24,14 @@ def display(towers):
 
 
 if __name__ == '__main__':
-    # while True:
-    towers = Towers(DISCS)
-    towers.move()
-    display(towers)
-    # time.sleep(INTERVAL * 3)
-        #
-        # while not towers.solved():
-        #     towers.move()
-        #     display(towers)
-        #     time.sleep(INTERVAL)
-        #
-        # time.sleep(INTERVAL * 10)
+    while True:
+        towers = Towers(DISCS)
+        display(towers)
+        time.sleep(INTERVAL * 3)
+
+        while not towers.solved():
+            towers.move()
+            display(towers)
+            time.sleep(INTERVAL)
+
+        time.sleep(INTERVAL * 10)

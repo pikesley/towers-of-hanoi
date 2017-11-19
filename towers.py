@@ -106,12 +106,6 @@ class Towers:
             matrix[row + 1][column + 1] = 1
             matrix[row + 2][column + 1] = 1
 
-        # for i in range(3, 6):
-        #     if int(value) == 0:
-        #         matrix[i][offset] = 1
-        #     matrix[i][offset + 1] = 1
-
-
     def __str__(self):
         return self.pretty_stacks()
 
