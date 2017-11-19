@@ -1,7 +1,6 @@
 default: lint test
 
 test:
-	pytest
 	bundle exec rspec
 
 lint:
