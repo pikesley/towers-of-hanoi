@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'thor'
 require 'httparty'
 require 'json'
 
@@ -21,20 +20,13 @@ def hit_phat towers
   HTTParty.post(url, body: payload.to_json, headers: headers)
 end
 
-class TowerRunner < Thor
-  desc "solve", "run the Towers of Hanoi against the pHAT's webserver"
-  def solve
-    towers = Towers.new 5
-    until towers.solved do
-      hit_phat towers
-      towers.move
-      sleep INTERVAL
-    end
+while true do
+  towers = Towers.new 5
+  until towers.solved do
     hit_phat towers
-    sleep INTERVAL * 3
+    towers.move
+    sleep INTERVAL
   end
-
-  default_task :solve
+  hit_phat towers
+  sleep INTERVAL * 3
 end
-
-TowerRunner.start
