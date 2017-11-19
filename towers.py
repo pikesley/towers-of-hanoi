@@ -96,16 +96,16 @@ class Towers:
                 matrix[i][column] = 1
 
         if int(value) == 0:
-            matrix[row][column + 1] = 1
-            matrix[row][column - 1] = 1
+            #matrix[row][column + 1] = 1
+            #matrix[row][column - 1] = 1
             matrix[row][column] = 1
             matrix[row + 2][column] = 1
 
-            matrix[row + 2][column - 1] = 1
+            #matrix[row + 2][column - 1] = 1
             matrix[row + 1][column - 1] = 1
-            matrix[row + 2][column - 1] = 1
+            #matrix[row + 2][column - 1] = 1
             matrix[row + 1][column + 1] = 1
-            matrix[row + 2][column + 1] = 1
+            #matrix[row + 2][column + 1] = 1
 
         # for i in range(3, 6):
         #     if int(value) == 0:
