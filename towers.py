@@ -63,15 +63,15 @@ class Towers:
         for i in range(7):
             matrix.append([0] * 45)
 
-        digit_offset = 0
-        digit_level = 'low'
+        bit_offset = 0
+        bit_side = 'right'
         for bit in list(self.binary):
-            self.little_digit(bit, matrix, 24 + digit_offset, digit_level)
-            if digit_level == 'low':
-                digit_level = 'high'
-                digit_offset += 8
+            self.little_bit(bit, matrix, 24 + bit_offset, bit_side)
+            if bit_side == 'right':
+                bit_side = 'left'
+                bit_offset += 8
             else:
-                digit_level = 'low'
+                bit_side = 'right'
 
         offset = 0
         for stack in self.stacks:
@@ -84,10 +84,10 @@ class Towers:
             offset = offset + 8
         return matrix
 
-    def little_digit(self, value, matrix, offset, level):
+    def little_bit(self, value, matrix, offset, side):
         column = offset + 1
         row = 0
-        if level == 'low':
+        if side == 'right':
             column = offset + 3
             row = 4
 
@@ -96,15 +96,10 @@ class Towers:
                 matrix[i][column] = 1
 
         if int(value) == 0:
-            matrix[row][column + 1] = 1
-            matrix[row][column - 1] = 1
-            matrix[row][column] = 1
-            matrix[row + 2][column] = 1
-
-            matrix[row + 2][column - 1] = 1
-            matrix[row + 1][column - 1] = 1
-            matrix[row + 1][column + 1] = 1
-            matrix[row + 2][column + 1] = 1
+            for i in range(3):
+                for j in range(-1, 2):
+                    matrix[row + i][column + j] = 1
+            matrix[row + 1][column] = 0
 
     def __str__(self):
         return self.pretty_stacks()

@@ -27,11 +27,11 @@ if __name__ == '__main__':
     while True:
         towers = Towers(DISCS)
         display(towers)
-        time.sleep(INTERVAL * 3)
+        time.sleep(INTERVAL)
 
         while not towers.solved():
             towers.move()
             display(towers)
             time.sleep(INTERVAL)
 
-        time.sleep(INTERVAL * 10)
+        time.sleep(INTERVAL)
