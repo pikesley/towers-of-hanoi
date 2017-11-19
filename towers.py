@@ -89,23 +89,20 @@ class Towers:
         row = 0
         if level == 'low':
             column = offset + 3
-            row = 4
+            row = 3
 
         if int(value) == 1:
-            for i in range(row, row + 3):
+            for i in range(row, row + 4):
                 matrix[i][column] = 1
 
         if int(value) == 0:
-            #matrix[row][column + 1] = 1
-            #matrix[row][column - 1] = 1
             matrix[row][column] = 1
-            matrix[row + 2][column] = 1
+            matrix[row + 3][column] = 1
 
-            #matrix[row + 2][column - 1] = 1
             matrix[row + 1][column - 1] = 1
-            #matrix[row + 2][column - 1] = 1
             matrix[row + 1][column + 1] = 1
-            #matrix[row + 2][column + 1] = 1
+            matrix[row + 2][column - 1] = 1
+            matrix[row + 2][column + 1] = 1
 
         # for i in range(3, 6):
         #     if int(value) == 0:
