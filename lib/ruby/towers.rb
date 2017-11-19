@@ -87,7 +87,7 @@ class Towers
 
   def Towers.diff first, second
     first.chars.reverse.each_with_index do |bit, index|
-      if bit == '0' and second.chars.reverse[index] == '1'
+      if bit < second.chars.reverse[index] 
         return index
       end
     end
