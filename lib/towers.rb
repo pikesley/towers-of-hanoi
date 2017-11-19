@@ -23,6 +23,64 @@ class Towers
     binary.chars.all? { |bit| bit.to_i == 1 }
   end
 
+  def matrix
+    matrix = []
+    7.times do
+      matrix.push [0] * 45
+    end
+
+    bit_offset = 0
+    bit_side = :right
+    binary.chars.each do |bit|
+      little_bit bit, matrix, 24 + bit_offset, bit_side
+
+      if bit_side == :right
+        bit_side = :left
+        bit_offset += 8
+      else
+        bit_side = :right
+      end
+    end
+
+    offset = 0
+    @stacks.each do |stack|
+      count = 0
+      stack.each do |disc|
+        shim = ((5 - (disc + 1)) / 2).round
+        (disc + 1).times do |i|
+          matrix[6 - count][i + offset + shim] = 1
+        end
+        count += 1
+      end
+      offset += 8
+    end
+
+    matrix
+  end
+
+  def little_bit value, matrix, offset, side
+    column = offset + 1
+    row = 0
+    if side == :right
+      column = offset + 3
+      row = 4
+    end
+
+    case value.to_i
+    when 0
+      3.times do |i|
+        (-1..1).each do |j|
+          matrix[row + i][column + j] = 1
+        end
+      end
+      matrix[row + 1][column] = 0
+    when 1
+      for i in (row..row + 3) do
+        matrix[i] = 1
+      end
+    end
+  end
+
   def Towers.binarise value, width
     '%0*b' % [width, value]
   end
