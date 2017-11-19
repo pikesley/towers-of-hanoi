@@ -11,10 +11,9 @@ if RASPI:
 @app.route("/lights", methods=['PATCH'])
 def lights():
     data = json.loads(request.data)['data']
+    s = ''
     if RASPI:
         clear()
-    else:
-        s = ''
 
     for i in range(7):
         for j in range(45):
