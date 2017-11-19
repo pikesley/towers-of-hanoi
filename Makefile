@@ -6,8 +6,8 @@ test:
 lint:
 	flake8 *py tests/
 
-run:
-	python towers.py $(discs)
+solve:
+	./towers console --discs $(discs)
 
 phat:
 	python webserver.py &

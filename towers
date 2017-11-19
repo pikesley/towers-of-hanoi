@@ -2,6 +2,7 @@
 
 require 'httparty'
 require 'json'
+require 'thor'
 
 require_relative 'lib/towers'
 
@@ -20,13 +21,78 @@ def hit_phat towers
   HTTParty.post(url, body: payload.to_json, headers: headers)
 end
 
-while true do
-  towers = Towers.new 5
-  until towers.solved do
-    hit_phat towers
-    towers.move
-    sleep INTERVAL
+def fakephat towers
+  s = ''
+  7.times do |i|
+    45.times do |j|
+      bit = towers.matrix[i][j]
+      if (4 - (j % 8)) < 0
+        s += ' '
+      else
+        case bit
+        when 0
+          s += '.'
+        when 1
+          s += 'o'
+        end
+      end
+    end
+    s += "\n"
   end
-  hit_phat towers
-  sleep INTERVAL * 3
+  s += "\n\n"
+  print s
 end
+
+def display towers
+  s = ''
+  towers.stacks.each do |stack|
+    s += stack.to_s
+    s += "\n"
+  end
+  s += '---'
+
+  puts s
+end
+
+class TowersSolver < Thor
+  desc "phat", "solve the towers against the pHAT's webserver"
+  def phat
+    while true do
+      towers = Towers.new 5
+      until towers.solved do
+        hit_phat towers
+        towers.move
+        sleep INTERVAL
+      end
+      hit_phat towers
+      sleep INTERVAL * 3
+    end
+  end
+
+  desc "fakephat", "simulate the pHAT on the console console"
+  def fakephat
+    towers = Towers.new 5
+    until towers.solved do
+      fakephat towers
+      towers.move
+      sleep INTERVAL
+    end
+    fakephat towers
+  end
+
+  desc "console", "solve the towers on the console"
+  option :discs, default: 3, type: :numeric
+  def console
+    moves = 0
+    towers = Towers.new options[:discs]
+    until towers.solved do
+      display towers
+      towers.move
+      moves += 1
+    end
+    display towers
+    puts "%s moves to solve %s discs" % [moves, options[:discs]]
+  end
+end
+
+TowersSolver.start
