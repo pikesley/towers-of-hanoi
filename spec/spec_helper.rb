@@ -1,4 +1,4 @@
-require 'towers'
+require 'ruby/towers'
 require 'coveralls'
 
 Coveralls.wear!
