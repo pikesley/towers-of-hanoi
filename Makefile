@@ -6,6 +6,9 @@ test:
 lint:
 	flake8 *py tests/
 
+install:
+	bundle
+
 solve:
 	./towers console --discs $(discs)
 
