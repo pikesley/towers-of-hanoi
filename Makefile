@@ -12,4 +12,4 @@ solve:
 phat:
 	python webserver.py &
 	sleep 2
-	./towers
+	./towers phat
