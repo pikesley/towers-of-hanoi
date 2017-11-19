@@ -75,8 +75,8 @@ class Towers
       end
       matrix[row + 1][column] = 0
     when 1
-      for i in (row..row + 3) do
-        matrix[i] = 1
+      for i in (row..row + 2) do
+        matrix[i][column] = 1
       end
     end
   end

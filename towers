@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require 'thor'
+require 'httparty'
+require 'json'
+
+require_relative 'lib/towers'
+
+INTERVAL = 0.3
+
+def hit_phat towers
+  url = 'http://192.168.1.115:5000/lights'
+  payload = {
+    data: towers.matrix
+  }
+  headers = {
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json'
+  }
+
+  HTTParty.post(url, body: payload.to_json, headers: headers)
+end
+
+class TowerRunner < Thor
+  desc "solve", "run the Towers of Hanoi against the pHAT's webserver"
+  def solve
+    towers = Towers.new 5
+    until towers.solved do
+      hit_phat towers
+      towers.move
+      sleep INTERVAL
+    end
+    hit_phat towers
+    sleep INTERVAL * 3
+  end
+
+  default_task :solve
+end
+
+TowerRunner.start
