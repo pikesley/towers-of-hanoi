@@ -3,10 +3,12 @@ import json
 from microdotphat import clear, set_pixel, show
 
 app = Flask(__name__)
- 
+
+
 @app.route("/")
 def hello():
     return "Hello Foo!"
+
 
 @app.route("/lights", methods=['POST'])
 def lights():
@@ -20,7 +22,13 @@ def lights():
                 pass
 
     show()
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
- 
+    return json.dumps({
+            'success': True
+        }
+        ), 200, {
+            'ContentType': 'application/json'
+        }
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')

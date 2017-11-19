@@ -1,10 +1,10 @@
 import time
-import requests, json
+import requests
+import json
 
-from microdotphat import clear, set_pixel, show
 from towers import Towers
 
-INTERVAL = 0.3 
+INTERVAL = 0.3
 DISCS = 5
 
 
@@ -13,6 +13,7 @@ def display(towers):
     payload = {"data": towers.phat_matrix()}
     headers = {'content-type': 'application/json'}
     requests.post(url, data=json.dumps(payload), headers=headers)
+
 
 if __name__ == '__main__':
     while True:
