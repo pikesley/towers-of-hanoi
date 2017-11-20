@@ -133,12 +133,12 @@ describe Towers do
   context 'locates the next receptive stack' do
     it 'solves the easy case' do
       stacks = [[2], [0], []]
-      expect(Towers.find_stack(1, 2, stacks)).to eq 0
+      expect(Towers.find_stack 1, 2, stacks).to eq 0
     end
 
     it 'solves a trickier case' do
       stacks = [[], [2], [1]]
-      expect(Towers.find_stack(0, 2, stacks)).to eq 0
+      expect(Towers.find_stack 0, 2, stacks).to eq 0
     end
   end
 end

@@ -1,5 +1,5 @@
 class Towers
-  attr_reader :count, :stacks, :binary
+  attr_reader :count, :stacks
 
   def initialize discs
     @discs = discs
@@ -9,7 +9,8 @@ class Towers
   end
 
   def move
-    flip = Towers.diff Towers.binarise(@count, @discs), Towers.binarise(@count += 1, @discs)
+    flip = Towers.diff Towers.binarise(@count, @discs),
+                       Towers.binarise(@count += 1, @discs)
     source = Towers.find_disc flip, @stacks
 
     @stacks[Towers.find_stack flip, source, @stacks].push @stacks[source].pop
@@ -78,7 +79,20 @@ class Towers
       for i in (row..row + 2) do
         matrix[i][column] = 1
       end
+    when 2
+      for i in (row..row + 2) do
+        matrix[i][column] = 1
+      end
+      matrix[row][column - 1] = 1
+      matrix[row + 2][column + 1] = 1
     end
+  end
+
+  def inspect
+    {
+      stacks: @stacks,
+      count: binary
+    }
   end
 
   def Towers.binarise value, width
@@ -87,7 +101,7 @@ class Towers
 
   def Towers.diff first, second
     first.chars.reverse.each_with_index do |bit, index|
-      if bit < second.chars.reverse[index] 
+      if bit < second.chars.reverse[index]
         return index
       end
     end

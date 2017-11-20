@@ -11,16 +11,14 @@ install:
 
 solve:
 	./towers console --discs $(or $(discs),3)
-	
+
+solve-constrained:
+		./towers console --discs $(or $(discs),3) --constrained
+
 phat:
 	python webserver.py &
 	sleep 2
-	./towers phat
-
-fake-phat:
-	python dummywebserver.py &
-	sleep 2
-	./towers phat
+	./towers phat --constrained
 
 kill:
 	kill `ps ax | grep webser | tr -s ' ' ' ' | cut -d ' ' -f 1`
