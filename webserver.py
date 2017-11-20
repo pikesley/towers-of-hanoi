@@ -5,39 +5,50 @@ import os
 app = Flask(__name__)
 
 RASPI = os.uname()[1] == 'raspberrypi'
+s = ''
+row = 0
+
 if RASPI:
     from microdotphat import clear, set_pixel, show
+else:
+    def clear():
+        global s, row
+        s = ''
+        row = 0
+
+    def set_pixel(j, i, bit):
+        global s, row
+
+        if row != i:
+            row = i
+            s += "\n"
+
+        if (4 - (j % 8)) < 0:
+            s += ' '
+        else:
+            if bit == 0:
+                s += '.'
+            if bit == 1:
+                s += 'o'
+
+    def show():
+        global s
+        print s
 
 
 @app.route("/lights", methods=['PATCH'])
 def lights():
     data = json.loads(request.data)['data']
-    s = ''
-    if RASPI:
-        clear()
+    clear()
 
     for i in range(7):
         for j in range(45):
-            if RASPI:
-                try:
-                    set_pixel(j, i, data[i][j])
-                except IndexError:
-                    pass
-            else:
-                bit = data[i][j]
-                if (4 - (j % 8)) < 0:
-                    s += ' '
-                else:
-                    if bit == 0:
-                        s += '.'
-                    if bit == 1:
-                        s += 'o'
-        s += "\n"
+            try:
+                set_pixel(j, i, data[i][j])
+            except IndexError:
+                pass
 
-    if RASPI:
-        show()
-    else:
-        print s
+    show()
 
     return json.dumps({
             'success': True
