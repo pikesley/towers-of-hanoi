@@ -13,6 +13,10 @@ class ConstrainedTowers < Towers
     @stacks[ConstrainedTowers.find_adjacent_stack flip, source, @stacks].push @stacks[source].pop
   end
 
+  def binary
+    ternary
+  end
+
   def ternary
     ConstrainedTowers.ternarise @count, @discs
   end

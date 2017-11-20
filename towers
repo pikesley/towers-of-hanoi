@@ -59,7 +59,7 @@ class TowersSolver < Thor
   desc "phat", "solve the towers against the pHAT's webserver"
   def phat
     while true do
-      towers = Towers.new 5
+      towers = ConstrainedTowers.new 5
       until towers.solved do
         hit_phat towers
         towers.move

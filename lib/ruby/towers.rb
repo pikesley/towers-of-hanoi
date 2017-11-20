@@ -78,6 +78,12 @@ class Towers
       for i in (row..row + 2) do
         matrix[i][column] = 1
       end
+    when 2
+      for i in (row..row + 2) do
+        matrix[i][column] = 1
+      end
+      matrix[row][column - 1] = 1
+      matrix[row + 2][column + 1] = 1
     end
   end
 
