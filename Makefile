@@ -15,11 +15,6 @@ solve:
 phat:
 	python webserver.py &
 	sleep 2
-	./towers phat
-
-fake-phat:
-	python dummywebserver.py &
-	sleep 2
 	./towers phat --constrained
 
 kill:
