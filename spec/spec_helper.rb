@@ -1,4 +1,5 @@
 require 'ruby/towers'
+require 'ruby/constrained_towers'
 require 'coveralls'
 
 Coveralls.wear!

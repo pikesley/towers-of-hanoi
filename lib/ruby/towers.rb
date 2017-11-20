@@ -1,5 +1,5 @@
 class Towers
-  attr_reader :count, :stacks, :binary
+  attr_reader :count, :stacks
 
   def initialize discs
     @discs = discs
@@ -81,13 +81,20 @@ class Towers
     end
   end
 
+  def inspect
+    {
+      stacks: @stacks,
+      count: binary
+    }
+  end
+
   def Towers.binarise value, width
     '%0*b' % [width, value]
   end
 
   def Towers.diff first, second
     first.chars.reverse.each_with_index do |bit, index|
-      if bit < second.chars.reverse[index] 
+      if bit < second.chars.reverse[index]
         return index
       end
     end

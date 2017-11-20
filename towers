@@ -5,6 +5,7 @@ require 'json'
 require 'thor'
 
 require_relative 'lib/ruby/towers'
+require_relative 'lib/ruby/constrained_towers'
 
 INTERVAL = 0.3
 
@@ -86,11 +87,26 @@ class TowersSolver < Thor
     moves = 0
     towers = Towers.new options[:discs]
     until towers.solved do
-      display towers
+      puts towers.inspect
       towers.move
       moves += 1
     end
-    display towers
+    puts towers.inspect
+
+    puts "%s moves to solve %s discs" % [moves, options[:discs]]
+  end
+
+  desc "constrained_console", "solve the constrained towers on the console"
+  option :discs, default: 3, type: :numeric
+  def constrained_console
+    moves = 0
+    towers = ConstrainedTowers.new options[:discs]
+    until towers.solved do
+      puts towers.inspect
+      towers.move
+      moves += 1
+    end
+    puts towers.inspect
     puts "%s moves to solve %s discs" % [moves, options[:discs]]
   end
 end
