@@ -16,9 +16,7 @@ solve-constrained:
 		./towers console --discs $(or $(discs),3) --constrained
 
 phat:
-	python webserver.py &
-	sleep 2
-	./towers phat --constrained
+  bundle exec foreman start
 
 kill:
 	kill `ps ax | grep webser | tr -s ' ' ' ' | cut -d ' ' -f 1`
