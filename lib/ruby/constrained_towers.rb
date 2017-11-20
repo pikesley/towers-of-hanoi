@@ -7,7 +7,8 @@ class ConstrainedTowers < Towers
   end
 
   def move
-    flip = Towers.diff ConstrainedTowers.ternarise(@count, @discs), ConstrainedTowers.ternarise(@count += 1, @discs)
+    flip = Towers.diff ConstrainedTowers.ternarise(@count, @discs),
+                       ConstrainedTowers.ternarise(@count += 1, @discs)
     source = Towers.find_disc flip, @stacks
 
     @stacks[ConstrainedTowers.find_adjacent_stack flip, source, @stacks].push @stacks[source].pop

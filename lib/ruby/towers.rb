@@ -9,7 +9,8 @@ class Towers
   end
 
   def move
-    flip = Towers.diff Towers.binarise(@count, @discs), Towers.binarise(@count += 1, @discs)
+    flip = Towers.diff Towers.binarise(@count, @discs),
+                       Towers.binarise(@count += 1, @discs)
     source = Towers.find_disc flip, @stacks
 
     @stacks[Towers.find_stack flip, source, @stacks].push @stacks[source].pop
