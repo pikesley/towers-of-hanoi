@@ -12,6 +12,9 @@ install:
 solve:
 	./towers console --discs $(or $(discs),3)
 
+solve-constrained:
+		./towers console --discs $(or $(discs),3) --constrained
+
 phat:
 	python webserver.py &
 	sleep 2
