@@ -22,28 +22,6 @@ def hit_phat towers
   HTTParty.patch(url, body: payload.to_json, headers: headers)
 end
 
-def fakephat towers
-  s = ''
-  7.times do |i|
-    45.times do |j|
-      bit = towers.matrix[i][j]
-      if (4 - (j % 8)) < 0
-        s += ' '
-      else
-        case bit
-        when 0
-          s += '.'
-        when 1
-          s += 'o'
-        end
-      end
-    end
-    s += "\n"
-  end
-  s += "\n\n"
-  print s
-end
-
 def display towers
   s = ''
   towers.stacks.each do |stack|
@@ -57,9 +35,13 @@ end
 
 class TowersSolver < Thor
   desc "phat", "solve the towers against the pHAT's webserver"
+  option :constrained, type: :boolean
   def phat
     while true do
-      towers = ConstrainedTowers.new 5
+      towers = Towers.new 5
+      if options[:constrained]
+        towers = ConstrainedTowers.new 5
+      end
       until towers.solved do
         hit_phat towers
         towers.move
@@ -70,43 +52,23 @@ class TowersSolver < Thor
     end
   end
 
-  desc "fakephat", "simulate the pHAT on the console console"
-  def fakephat
-    towers = Towers.new 5
-    until towers.solved do
-      fakephat towers
-      towers.move
-      sleep INTERVAL
-    end
-    fakephat towers
-  end
-
   desc "console", "solve the towers on the console"
   option :discs, default: 3, type: :numeric
+  option :constrained, type: :boolean
   def console
     moves = 0
     towers = Towers.new options[:discs]
+    if options[:constrained]
+      towers = ConstrainedTowers.new options[:discs]
+    end
+
     until towers.solved do
-      puts towers.inspect
+      display towers
       towers.move
       moves += 1
     end
-    puts towers.inspect
+    display towers
 
-    puts "%s moves to solve %s discs" % [moves, options[:discs]]
-  end
-
-  desc "constrained_console", "solve the constrained towers on the console"
-  option :discs, default: 3, type: :numeric
-  def constrained_console
-    moves = 0
-    towers = ConstrainedTowers.new options[:discs]
-    until towers.solved do
-      puts towers.inspect
-      towers.move
-      moves += 1
-    end
-    puts towers.inspect
     puts "%s moves to solve %s discs" % [moves, options[:discs]]
   end
 end
