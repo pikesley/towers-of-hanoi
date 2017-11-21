@@ -7,7 +7,10 @@ lint:
 	flake8 *py tests/
 
 install:
-	bundle
+	virtualenv .
+	. bin/activate
+	pip install -r requirements.txt
+	bundle install
 
 solve:
 	./towers console --discs $(or $(discs),3)
