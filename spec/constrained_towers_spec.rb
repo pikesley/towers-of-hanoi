@@ -12,27 +12,21 @@ describe ConstrainedTowers do
       expect(Towers.diff '012', '020').to eq 1
     end
   end
-  context 'adjacent stacks' do
-    context 'noddy cases' do
-      it 'moves from left to centre' do
-        stacks = [[], [], []]
-        expect(ConstrainedTowers.find_adjacent_stack 0, 0, stacks).to eq 1
-      end
 
-      it 'moves from right to centre' do
-        stacks = [[], [], []]
-        expect(ConstrainedTowers.find_adjacent_stack 0, 2, stacks).to eq 1
-      end
-    end
-  end
+  context 'follow the rules' do
+    [2, 3, 4, 5, 6, 7, 8].each do |discs|
+      it "plays by the rules with %s discs" % discs do
+        towers = ConstrainedTowers.new discs
+        goal = towers.stacks[0].clone
+        until towers.solved do
+          towers.move
+          towers.stacks.each do |stack|
+            expect(stack.sort.reverse).to eq stack
+          end
+        end
 
-  it 'follows the rules' do
-    towers = ConstrainedTowers.new 4
-
-    until towers.solved do
-      towers.move
-      towers.stacks.each do |stack|
-        expect(stack.sort.reverse).to eq stack
+        expect(towers.stacks[2]).to eq goal
+        expect(towers.count).to eq (3 ** discs) - 1
       end
     end
   end
