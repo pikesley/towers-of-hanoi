@@ -7,7 +7,7 @@ require 'thor'
 require_relative 'lib/ruby/towers'
 require_relative 'lib/ruby/constrained_towers'
 
-INTERVAL = 0.3
+INTERVAL = 0.1
 
 def hit_phat towers
   url = 'http://localhost:5000/lights'
