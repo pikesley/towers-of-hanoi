@@ -7,9 +7,7 @@ lint:
 	flake8 *py tests/
 
 install:
-	virtualenv .
-	. bin/activate
-	pip install -r requirements.txt
+	sudo pip install -r requirements.txt
 	bundle install
 
 solve:
@@ -21,5 +19,7 @@ solve-constrained:
 phat:
 	bundle exec foreman start
 
-kill:
-	kill `ps ax | grep webser | tr -s ' ' ' ' | cut -d ' ' -f 1`
+foreman: install
+	foreman export -a hanoi -u pi systemd /etc/systemd/system
+	sudo systemctl daemon-reload
+	sudo systemctl restart hanoi.target

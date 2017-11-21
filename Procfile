@@ -1,2 +1,2 @@
-web: cd flask && python webserver.py
+web: python flask/webserver.py
 solver: ./towers phat --constrained
