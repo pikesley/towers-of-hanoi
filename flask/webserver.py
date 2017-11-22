@@ -11,7 +11,7 @@ app = Flask(__name__)
 RASPI = os.uname()[1] == 'raspberrypi'
 
 if RASPI:
-    from microdotphat import clear, set_pixel, show
+    from microdotphat import clear, show, set_pixel, set_decimal
 else:
     from fake_phat import clear, set_pixel, show
 
@@ -23,15 +23,27 @@ def index():
 
 @app.route("/lights", methods=['PATCH'])
 def lights():
-    data = json.loads(request.data)['data']
+    try:
+        matrix = json.loads(request.data)['matrix']
+    except KeyError:
+        matrix = [[]]
+
+    try:
+        decimals = json.loads(request.data)['decimals']
+    except KeyError:
+        decimals = []
+
     clear()
 
     for i in range(7):
         for j in range(45):
             try:
-                set_pixel(j, i, data[i][j])
+                set_pixel(j, i, matrix[i][j])
             except IndexError:
                 pass
+    
+    for decimal in decimals:
+        set_decimal(decimal, 1)
 
     show()
 
